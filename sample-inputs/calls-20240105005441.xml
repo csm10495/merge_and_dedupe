@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<!--File Created By SMS Backup & Restore v10.20.002 on 05/01/2024 00:54:41-->
+<!--
+
+To view this file in a more readable format, visit https://synctech.com.au/view-backup/
+
+-->
+<calls count="3" backup_set="a8f9d39b-381c-4fd2-8161-d77b0d9a429a" backup_date="1704444881717" type="incremental">
+  <call number="22345678910" duration="27" date="1704415168408" type="1" presentation="1" subscription_id="8" post_dial_digits="" subscription_component_name="com.android.phone/com.android.services.telephony.TelephonyConnectionService" readable_date="Jan 4, 2024 4:39:28 PM" contact_name="Will" />
+  <call number="223456789121" duration="570" date="1704424063078" type="1" presentation="1" subscription_id="8" post_dial_digits="" subscription_component_name="com.android.phone/com.android.services.telephony.TelephonyConnectionService" readable_date="Jan 4, 2024 7:07:43 PM" contact_name="Bilbo" />
+  <call number="22345678914" duration="2402" date="1704424659574" type="1" presentation="1" subscription_id="8" post_dial_digits="" subscription_component_name="com.android.phone/com.android.services.telephony.TelephonyConnectionService" readable_date="Jan 4, 2024 7:17:39 PM" contact_name="Gina" />
+</calls>

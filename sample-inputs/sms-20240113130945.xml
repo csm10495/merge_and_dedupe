@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<!--File Created By SMS Backup & Restore v10.20.002 on 13/01/2024 13:09:46-->
+<!--
+
+To view this file in a more readable format, visit https://synctech.com.au/view-backup/
+
+-->
+<smses count="2" backup_set="a8f9d39b-381c-4fd2-8161-d77b0d9a429a" backup_date="1705180185950" type="incremental">
+  <sms protocol="0" address="77777" date="1705179273911" type="1" subject="null" body="Hi Charles! Welcome to your new phone!" toa="null" sc_toa="null" service_center="+1901512571" read="0" status="-1" locked="0" date_sent="1705179269000" sub_id="8" readable_date="Jan 13, 2024 12:54:33 PM" contact_name="Phone Company" />
+  <sms protocol="0" address="19165555555" date="1704743029131" type="2" subject="null" body="YES" toa="null" sc_toa="null" service_center="null" read="1" status="-1" locked="0" date_sent="0" sub_id="8" readable_date="Jan 8, 2024 11:43:49 AM" contact_name="Pets" />
+</smses>

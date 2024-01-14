@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<!--File Created By SMS Backup & Restore v10.20.002 on 09/01/2024 00:54:24-->
+<!--
+
+To view this file in a more readable format, visit https://synctech.com.au/view-backup/
+
+-->
+<smses count="3" backup_set="a8f9d39b-381c-4fd2-8161-d77b0d9a429a" backup_date="1704790459345" type="incremental">
+  <sms protocol="0" address="19165555555" date="1704743012563" type="1" subject="null" body="Hello Charles!" toa="null" sc_toa="null" service_center="+19039321416" read="1" status="-1" locked="0" date_sent="1704743007000" sub_id="8" readable_date="Jan 8, 2024 11:43:32 AM" contact_name="Pets" />
+  <sms protocol="0" address="19165555555" date="1704743029131" type="2" subject="null" body="YES" toa="null" sc_toa="null" service_center="null" read="1" status="-1" locked="0" date_sent="0" sub_id="8" readable_date="Jan 8, 2024 11:43:49 AM" contact_name="Pets" />
+  <mms date="1704745759000" rr="null" sub="" ct_t="text/plain" read_status="null" seen="1" msg_box="1" address="redacted@rcs.google.com" sub_cs="106" resp_st="null" retr_st="null" d_tm="null" text_only="1" exp="null" locked="0" m_id="null" st="null" retr_txt_cs="null" retr_txt="null" creator="com.google.android.apps.messaging" date_sent="1704745759" read="1" m_size="0" rpt_a="null" ct_cls="135" pri="null" sub_id="8" tr_id="proto:stuff" resp_txt="null" ct_l="null" m_cls="null" d_rpt="null" v="null" _id="13997" m_type="132" readable_date="Jan 8, 2024 12:29:19 PM" contact_name="Jack">
+    <parts>
+      <part seq="0" ct="text/plain" name="body" chset="null" cd="null" fn="null" cid="null" cl="null" ctt_s="null" ctt_t="null" text="Sounds like Thursday is our winner." sub_id="8" />
+    </parts>
+    <addrs>
+      <addr address="+11111111111" type="130" charset="106" />
+      <addr address="+22222222222" type="130" charset="106" />
+      <addr address="+33333333333" type="137" charset="106" />
+      <addr address="+44444444444" type="151" charset="106" />
+    </addrs>
+  </mms>
+</smses>

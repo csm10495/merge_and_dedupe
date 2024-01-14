@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<!--File Created By SMS Backup & Restore v10.18.001 on 25/11/2022 00:54:34-->
+<!--
+
+To view this file in a more readable format, visit https://synctech.com.au/view-backup/
+
+-->
+<calls count="5" backup_set="315a9451-18ca-4911-ac79-8915729dd3db" backup_date="1669366474890" type="incremental">
+  <call number="12345678910" duration="192" date="1669326043955" type="2" presentation="1" subscription_id="8" post_dial_digits="" subscription_component_name="com.android.phone/com.android.services.telephony.TelephonyConnectionService" readable_date="Nov 24, 2022 1:40:43 PM" contact_name="Joe" />
+  <call number="22345678910" duration="0" date="1669327850361" type="3" presentation="1" subscription_id="0" post_dial_digits="" subscription_component_name="com.google.android.apps.tachyon/com.google.android.apps.tachyon.telecom.TachyonTelecomConnectionService" readable_date="Nov 24, 2022 2:10:50 PM" contact_name="Will" />
+  <call number="42345678910" duration="5" date="1669334810376" type="2" presentation="1" subscription_id="8" post_dial_digits="" subscription_component_name="com.android.phone/com.android.services.telephony.TelephonyConnectionService" readable_date="Nov 24, 2022 4:06:50 PM" contact_name="Deborah" />
+  <call number="42345678910" duration="0" date="1669344638226" type="3" presentation="1" subscription_id="8" post_dial_digits="" subscription_component_name="com.android.phone/com.android.services.telephony.TelephonyConnectionService" readable_date="Nov 24, 2022 6:50:38 PM" contact_name="Deborah" />
+  <call number="22345678914" duration="2402" date="1704424659574" type="1" presentation="1" subscription_id="8" post_dial_digits="" subscription_component_name="com.android.phone/com.android.services.telephony.TelephonyConnectionService" readable_date="Jan 4, 2024 7:17:39 PM" contact_name="Gina" />
+</calls>
