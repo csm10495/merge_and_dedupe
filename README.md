@@ -1,7 +1,5 @@
 # merge_and_dedupe.py
 
-This is a WIP.
-
 This is a script to help merge/dedup a whole bunch of xml files from SMS Backup & Restore: https://play.google.com/store/apps/details?id=com.riteshsahu.SMSBackupRestore&hl=en_US&gl=US
 
 It should work with Python 3.10 or more recent.
