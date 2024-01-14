@@ -144,7 +144,7 @@ def get_ordered_list_of_items(typ: BackupType, input_dir: Path) -> list[ET.Eleme
 def render_from_list(
     typ: BackupType, items: list[ET.Element], output_dir: Path, backup_set: str
 ) -> None:
-    root = ET.Element(typ.name.lower())
+    root = ET.Element(typ.get_root_xml_tag())
 
     # format matching the app's behavior with these fields
     root.attrib["backup_set"] = backup_set
