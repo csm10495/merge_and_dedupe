@@ -12,6 +12,8 @@ from collections import defaultdict
 from enum import Enum
 from time import time
 from datetime import datetime
+from zipfile import ZipFile, ZIP_DEFLATED
+from io import BytesIO
 
 from uuid import uuid4
 
@@ -108,6 +110,14 @@ class BackupRestoreItems:
                     new_item.attrib[address_key].lstrip("1")
                 ] = new_item.attrib[CONTACT_NAME]
 
+    def add_from_tree(self, tree: ET.ElementTree) -> None:
+        """
+        Add all items from the given tree
+        """
+        root = tree.getroot()
+        for child in root:
+            self.add(child)
+
     def _fix_contact_names(self) -> None:
         """
         Do one final attempt to fix contact names. If we see an unknown, check if we have it defined in the number_to_contact_name dict.
@@ -132,17 +142,30 @@ def get_ordered_list_of_items(typ: BackupType, input_dir: Path) -> list[ET.Eleme
     from the input_dir and returns a list of them, sorted by date (oldest first)
     """
     item_list = BackupRestoreItems()
-    for file in input_dir.glob(f"{typ.name.lower()}-*.xml"):
-        tree = ET.parse(file)
-        root = tree.getroot()
-        for child in root:
-            item_list.add(child)
+    for file in list(input_dir.glob(f"{typ.name.lower()}-*.xml")) + list(
+        input_dir.glob(f"{typ.name.lower()}-*.xml.zip")
+    ):
+        if file.suffix == ".zip":
+            with ZipFile(file) as zip_file:
+                # This logic doesn't really match the app's behavior since it'll add all xml files that match in a zip instead
+                #  of (i think) just the one that matches the zip name
+                for f in zip_file.namelist():
+                    if f.startswith(typ.name.lower()) and f.endswith(".xml"):
+                        with zip_file.open(f) as xml_file:
+                            item_list.add_from_tree(ET.parse(BytesIO(xml_file.read())))
+        else:
+            # regular xml file
+            item_list.add_from_tree(ET.parse(file))
 
     return item_list.get_list()
 
 
 def render_from_list(
-    typ: BackupType, items: list[ET.Element], output_dir: Path, backup_set: str
+    typ: BackupType,
+    items: list[ET.Element],
+    output_dir: Path,
+    backup_set: str,
+    compress: bool = False,
 ) -> None:
     """
     Render the given list of items to the given output_dir
@@ -164,16 +187,25 @@ def render_from_list(
     ET.indent(tree)
 
     # match default app file-name format
+    file_name = datetime.now().strftime(f"{typ.name.lower()}-%Y%m%d%H%M%S.xml")
+    xml_file_path = output_dir / file_name
     tree.write(
-        output_dir / datetime.now().strftime(f"{typ.name.lower()}-%Y%m%d%H%M%S.xml"),
+        xml_file_path,
         encoding="utf-8",
         xml_declaration=True,
     )
 
+    if compress:
+        with ZipFile(
+            str(xml_file_path) + ".zip", "w", compression=ZIP_DEFLATED, compresslevel=9
+        ) as zip_file:
+            zip_file.write(str(xml_file_path), arcname=file_name)
+        xml_file_path.unlink()
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Merge and de-duplicate calls and sms from the SMS Backup & Restore app's xml files."
+        description="Merge and de-duplicate calls and sms from the SMS Backup & Restore app's xml (or .zip) files."
     )
     parser.add_argument(
         "--input-dir",
@@ -185,18 +217,30 @@ if __name__ == "__main__":
     parser.add_argument(
         "--output-dir", "-o", type=Path, required=True, help="Output directory path"
     )
+    parser.add_argument(
+        "--compress",
+        "-c",
+        action="store_true",
+        help="Compress the output files (similarly to the Pro version of the app)",
+    )
+
     args = parser.parse_args()
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
 
     backup_set = str(uuid4())
     print("Backup set: " + backup_set)
+
     all_calls = get_ordered_list_of_items(BackupType.Calls, args.input_dir)
     print(f"Total calls: {len(all_calls)}")
-    render_from_list(BackupType.Calls, all_calls, args.output_dir, backup_set)
+    render_from_list(
+        BackupType.Calls, all_calls, args.output_dir, backup_set, args.compress
+    )
     print("Finished doing calls.")
 
     all_sms = get_ordered_list_of_items(BackupType.SMS, args.input_dir)
     print(f"Total sms: {len(all_sms)}")
-    render_from_list(BackupType.SMS, all_sms, args.output_dir, backup_set)
+    render_from_list(
+        BackupType.SMS, all_sms, args.output_dir, backup_set, args.compress
+    )
     print("Finished doing sms.")
